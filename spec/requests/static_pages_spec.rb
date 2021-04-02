@@ -25,8 +25,9 @@ RSpec.describe 'StaticPages', type: :request do
       expect(response).to have_http_status(200)
     end
 
-    it "should show title 'Home | Ruby on Rails Tutorial Sample App'" do
-      expect(response.body).to include("Home | #{base_title}")
+    it "should show title 'Ruby on Rails Tutorial Sample App'" do
+      expect(response.body).to include(base_title)
+      expect(response.body).not_to include(" | #{base_title}")
     end
   end
 
