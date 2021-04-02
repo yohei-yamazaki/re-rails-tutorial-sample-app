@@ -14,4 +14,11 @@ RSpec.describe "StaticPages", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "GET /static_pages/about" do
+    it "should get about" do
+      get static_pages_about_path
+      expect(response).to have_http_status(200)
+    end
+  end
 end
