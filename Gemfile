@@ -12,6 +12,7 @@ gem 'bootsnap', '1.7.3', require: false
 group :development, :test do
   gem 'sqlite3', '1.4.2'
   gem 'byebug', '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails', '6.1.0'
 end
 
 group :development do
@@ -24,6 +25,7 @@ end
 group :test do
   gem 'capybara', '3.35.3'
   gem 'selenium-webdriver', '3.142.7'
+  gem 'rspec-rails', '5.0.1'
   gem 'webdrivers', '4.6.0'
 end
 
