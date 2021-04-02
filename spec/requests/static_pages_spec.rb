@@ -12,6 +12,11 @@ RSpec.describe 'StaticPages', type: :request do
     it 'should get home' do
       expect(response).to have_http_status(200)
     end
+
+    it "should show title 'Home | Ruby on Rails Tutorial Sample App'" do
+      puts "response: #{response.body}"
+      expect(response.body).to include('Home | Ruby on Rails Tutorial Sample App')
+    end
   end
 
   describe 'GET /static_pages/help' do
@@ -22,6 +27,10 @@ RSpec.describe 'StaticPages', type: :request do
     it 'should get help' do
       expect(response).to have_http_status(200)
     end
+
+    it "should show title 'Help | Ruby on Rails Tutorial Sample App'" do
+      expect(response.body).to include('Help | Ruby on Rails Tutorial Sample App')
+    end
   end
 
   describe 'GET /static_pages/about' do
@@ -31,6 +40,10 @@ RSpec.describe 'StaticPages', type: :request do
 
     it 'should get about' do
       expect(response).to have_http_status(200)
+    end
+
+    it "should show title 'About | Ruby on Rails Tutorial Sample App'" do
+      expect(response.body).to include('About | Ruby on Rails Tutorial Sample App')
     end
   end
 end
