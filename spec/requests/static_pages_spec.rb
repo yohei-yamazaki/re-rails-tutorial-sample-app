@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'StaticPages', type: :request do
+  let(:base_title) { 'Ruby on Rails Tutorial Sample App' }
 
   describe 'GET /static_pages/home' do
     before do
@@ -14,8 +15,7 @@ RSpec.describe 'StaticPages', type: :request do
     end
 
     it "should show title 'Home | Ruby on Rails Tutorial Sample App'" do
-      puts "response: #{response.body}"
-      expect(response.body).to include('Home | Ruby on Rails Tutorial Sample App')
+      expect(response.body).to include("Home | #{base_title}")
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe 'StaticPages', type: :request do
     end
 
     it "should show title 'Help | Ruby on Rails Tutorial Sample App'" do
-      expect(response.body).to include('Help | Ruby on Rails Tutorial Sample App')
+      expect(response.body).to include("Help | #{base_title}")
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe 'StaticPages', type: :request do
     end
 
     it "should show title 'About | Ruby on Rails Tutorial Sample App'" do
-      expect(response.body).to include('About | Ruby on Rails Tutorial Sample App')
+      expect(response.body).to include("About | #{base_title}")
     end
   end
 end
