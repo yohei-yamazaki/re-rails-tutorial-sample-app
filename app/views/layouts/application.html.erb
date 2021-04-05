@@ -16,14 +16,14 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-expand-md bg-dark navbar-dark bg-dark">
       <div class="container">
-        <%= link_to "sample app", '#', id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   '#' %></li>
-            <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
+        <div class="navbar-brand"><%= link_to "sample app", '#', id: "logo" %></div>
+        <nav class="collapse navbar-collapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item nav-link"><%= link_to "Home",   '#' %></li>
+            <li class="nav-item nav-link"><%= link_to "Help",   '#' %></li>
+            <li class="nav-item nav-link"><%= link_to "Log in", '#' %></li>
           </ul>
         </nav>
       </div>
