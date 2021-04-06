@@ -5,20 +5,19 @@ require 'rails_helper'
 RSpec.describe 'StaticPages', type: :request do
   let(:base_title) { 'Ruby on Rails Tutorial Sample App' }
 
-  describe 'GET /' do
-    before do
-      get root_url
-    end
+  # describe 'GET /' do
+  #   before do
+  #     get root_path
+  #   end
 
-    it 'should get root' do
-      expect(response).to have_http_status(200)
-    end
-  end
-
+  #   it 'should get root' do
+  #     expect(response).to have_http_status(200)
+  #   end
+  # end
 
   describe 'GET /static_pages/home' do
     before do
-      get static_pages_home_path
+      get root_path
     end
 
     it 'should get home' do
@@ -33,7 +32,7 @@ RSpec.describe 'StaticPages', type: :request do
 
   describe 'GET /static_pages/help' do
     before do
-      get static_pages_help_path
+      get help_path
     end
 
     it 'should get help' do
@@ -47,7 +46,7 @@ RSpec.describe 'StaticPages', type: :request do
 
   describe 'GET /static_pages/about' do
     before do
-      get static_pages_about_path
+      get about_path
     end
 
     it 'should get about' do
@@ -61,7 +60,7 @@ RSpec.describe 'StaticPages', type: :request do
 
   describe 'GET /static_pages/contact' do
     before do
-      get static_pages_contact_path
+      get contact_path
     end
 
     it 'should get contact' do
