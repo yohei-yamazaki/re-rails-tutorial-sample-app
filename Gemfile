@@ -13,6 +13,10 @@ group :development, :test do
   gem 'sqlite3', '1.4.2'
   gem 'byebug', '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '6.1.0'
+  gem 'rubocop', '~> 0.83', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false # Rails プロジェクトのみ
+  gem 'rubocop-rspec', require: false # テストに RSpec を利用するプロジェクトのみ
 end
 
 group :development do
