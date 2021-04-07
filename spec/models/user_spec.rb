@@ -11,4 +11,9 @@ RSpec.describe User, type: :model do
     user.name = '  '
     expect(user).not_to be_valid
   end
+
+  it 'is invalid with email' do
+    user.email = '  '
+    expect(user).not_to be_valid
+  end
 end
