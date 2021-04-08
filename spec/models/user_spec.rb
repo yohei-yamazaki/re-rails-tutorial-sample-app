@@ -59,4 +59,14 @@ RSpec.describe User, type: :model do
     user.reload
     expect(user.email).to eq user.email.downcase
   end
+
+  it 'invalid with blank password' do
+    user.password = user.password_confirmation = ' ' * 6
+    expect(user).not_to be_valid
+  end
+
+  it 'invalid with less than 6 letters' do
+    user.password = user.password_confirmation = 'a' * 5
+    expect(user).not_to be_valid
+  end
 end
