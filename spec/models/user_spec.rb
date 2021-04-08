@@ -45,4 +45,10 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid, "#{invalid_address.inspect} is invalid"
     end
   end
+
+  it 'is valid with unique email address' do
+    duplicate_user = user.dup
+    user.save
+    expect(duplicate_user).not_to be_valid
+  end
 end
