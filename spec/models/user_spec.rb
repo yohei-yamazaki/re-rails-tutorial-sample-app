@@ -52,4 +52,11 @@ RSpec.describe User, type: :model do
     user.save
     expect(duplicate_user).not_to be_valid
   end
+
+  it 'saved email as lower-case' do
+    user.email = user.email.upcase
+    user.save
+    user.reload
+    expect(user.email).to eq user.email.downcase
+  end
 end
