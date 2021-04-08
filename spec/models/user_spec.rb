@@ -48,6 +48,7 @@ RSpec.describe User, type: :model do
 
   it 'is valid with unique email address' do
     duplicate_user = user.dup
+    duplicate_user.email = user.email.upcase
     user.save
     expect(duplicate_user).not_to be_valid
   end
