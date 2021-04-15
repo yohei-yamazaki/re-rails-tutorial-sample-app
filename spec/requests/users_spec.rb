@@ -18,20 +18,37 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'before_action: :correct_user' do
-    before do
-      log_in_as(other_user)
+  describe 'before_action: :logged_in_user' do
+    context 'when not logged in' do
+      it 'redirects edit' do
+        get edit_user_path(user)
+        expect(flash).not_to be_empty
+        expect(response).to redirect_to login_url
+      end
+      it 'redirects update' do
+        patch user_path(user), params: { user: { name: user.name, email: user.email } }
+        expect(flash).not_to be_empty
+        expect(response).to redirect_to login_url
+      end
     end
+  end
 
-    it 'redirects edit when logged in as wrong user' do
-      get edit_user_path(user, { 'user_id': 5 })
-      expect(flash).not_to be_empty
-      expect(response).to redirect_to login_url
-    end
-    it 'redirects update when logged in as wrong user' do
-      patch user_path(user), params: { user: { name: user.name, email: user.email } }
-      expect(flash).not_to be_empty
-      expect(response).to redirect_to login_url
+  describe 'before_action: :correct_user' do
+    context 'when logged in as wrong user' do
+      before do
+        log_in_as(other_user)
+      end
+
+      it 'redirects edit' do
+        get edit_user_path(user)
+        expect(flash).to be_empty
+        expect(response).to redirect_to root_url
+      end
+      it 'redirects update' do
+        patch user_path(user), params: { user: { name: user.name, email: user.email } }
+        expect(flash).to be_empty
+        expect(response).to redirect_to root_url
+      end
     end
   end
 end
