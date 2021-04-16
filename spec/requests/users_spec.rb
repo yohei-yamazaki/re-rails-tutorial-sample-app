@@ -18,6 +18,17 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
+  describe 'PATCH /users/:id/edit' do
+    it 'does not allow the admin attribute to be edited via the web' do
+      log_in_as(other_user)
+      expect(other_user.admin?).to be_falsy
+      patch user_path(other_user), params: {
+        user: { password: 'password', password_confirmation: 'password', admin: true }
+      }
+      expect(other_user.reload.admin?).to be_falsy
+    end
+  end
+
   describe 'before_action: :logged_in_user' do
     context 'when not logged in' do
       it 'redirects edit' do
