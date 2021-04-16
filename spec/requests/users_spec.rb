@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :request do
   let!(:user) { FactoryBot.create(:user) }
   let!(:other_user) { FactoryBot.create(:user, { name: 'other user' }) }
+  let!(:admin) { FactoryBot.create(:admin) }
 
   describe 'GET /users/:id' do
     it 'should get show' do
@@ -29,6 +30,13 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
+  describe 'DELETE /users/:id' do
+    it 'delete user count' do
+      log_in_as(admin)
+      expect { delete(user_path(user)) }.to change(User, :count).by(-1)
+    end
+  end
+
   describe 'before_action: :logged_in_user' do
     context 'when not logged in' do
       it 'redirects edit' do
@@ -45,6 +53,11 @@ RSpec.describe 'Users', type: :request do
       it 'redirects index' do
         get users_path
         expect(flash).not_to be_empty
+        expect(response).to redirect_to login_url
+      end
+
+      it 'redirects destroy' do
+        expect { delete(user_path(user)) }.not_to change(User, :count)
         expect(response).to redirect_to login_url
       end
     end
@@ -64,6 +77,16 @@ RSpec.describe 'Users', type: :request do
       it 'redirects update' do
         patch user_path(user), params: { user: { name: user.name, email: user.email } }
         expect(flash).to be_empty
+        expect(response).to redirect_to root_url
+      end
+    end
+  end
+
+  describe 'before_action: :admin_user' do
+    context 'when logged in not admin user' do
+      it 'redirects destroy' do
+        log_in_as(other_user)
+        expect { delete(user_path(user)) }.not_to change(User, :count)
         expect(response).to redirect_to root_url
       end
     end
