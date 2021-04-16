@@ -43,3 +43,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bcrypt', '3.1.16'
 
 gem "faker", "~> 2.17"
+
+gem "will_paginate", "~> 3.3"
+gem "will_paginate-bootstrap4", "~> 0.2.2"
