@@ -30,6 +30,12 @@ RSpec.describe 'Users', type: :request do
         expect(flash).not_to be_empty
         expect(response).to redirect_to login_url
       end
+
+      it 'redirects index' do
+        get users_path
+        expect(flash).not_to be_empty
+        expect(response).to redirect_to login_url
+      end
     end
   end
 
