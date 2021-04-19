@@ -6,6 +6,8 @@ FactoryBot.define do
     sequence(:email) { |n| "tester#{n}@example.com" }
     password { 'foobar' }
     password_confirmation { 'foobar' }
+    activated { true }
+    activated_at { Time.zone.now }
   end
   factory :admin, class: 'User' do
     name { 'Admin' }
@@ -13,5 +15,7 @@ FactoryBot.define do
     password { 'foobar' }
     password_confirmation { 'foobar' }
     admin { true }
+    activated { true }
+    activated_at { Time.zone.now }
   end
 end
