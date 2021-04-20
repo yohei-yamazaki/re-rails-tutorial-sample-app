@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  before_action :get_user, only: %i[edit update]
+  before_action :valid_user, only: %i[edit update]
   def new; end
 
   def create
@@ -15,4 +17,14 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit; end
+
+  private
+
+  def get_user # rubocop:disable Naming/AccessorMethodName
+    @user = User.find_by(email: params[:email])
+  end
+
+  def valid_user
+    redirect_to root_url unless @user&.activated? && @user&.authenticated?(:reset, params[:id])
+  end
 end
